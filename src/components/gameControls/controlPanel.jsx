@@ -3,20 +3,20 @@ import './../../App.css';
 import {connect} from "react-redux";
 import {resetCount, runTimerThunk, stopTimerThunk} from "../../redux/reducer";
 
-const ControlPanelRender = (props) => {
-    if ( props.count === props.maxCount) {
-        props.stopTimerThunk();
+const ControlPanelRender = ({count, maxCount, timerOn, runTimerThunk, stopTimerThunk, resetCount}) => {
+    if ( count === maxCount) {
+        stopTimerThunk();
     }
     return (
         <div >
             CONTROL SCREEN
             <div className="counter">
-                {props.count}
+                {count}
             </div>
-            {!props.timerOn?<button onClick={props.runTimerThunk}>START</button>:
+            {!timerOn?<button onClick={runTimerThunk}>START</button>:
             <div>
-            <button onClick={props.stopTimerThunk}>STOP</button>
-            <button onClick={()=>{props.resetCount(); props.stopTimerThunk();}}>RESTART</button>
+            <button onClick={stopTimerThunk}>STOP</button>
+            <button onClick={()=>{resetCount(); stopTimerThunk();}}>RESTART</button>
             </div>}
         </div>
     );
@@ -31,7 +31,6 @@ class ControlPanelContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        dogParts: state.reducer.dogParts,
         count: state.reducer.count,
         maxCount: state.reducer.maxCount,
         timerOn: state.reducer.timerOn,

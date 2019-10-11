@@ -5,8 +5,7 @@ import './../App.css';
 
 const Game = () => {
     return (
-        <div>
-
+        <div className="application-wrap">
             <GameScreen />
             <ControlPanel />
         </div>

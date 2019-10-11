@@ -1,25 +1,41 @@
-
-
-.item {
-  border: 1px solid grey;
+.buttonWrapper{
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  text-align: center;
+  border: 1px solid grey;
   overflow: hidden;
+  position: relative;
+  float: left;
   display: inline-block;
+  cursor: pointer;
 }
-.itemSuccess {
-  composes: item;
-  border: 2px solid darkgreen;
-}
-.photo {
-  width: 100%;
+
+.itemDog {
   height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-transition: all .1s;
+  -moz-transition: all .1s;
+  -o-transition: all .1s;
+  transition: all .1s;
   visibility: hidden;
+}
+.itemDog:hover{
+  transform: scale(1.1);
+}
+.itemDog:focus{
+  outline: 1px solid transparent;
 }
 
 .show {
-  composes: photo;
+  composes: itemDog;
   visibility: visible;
+}
+
+.success {
+  border: 2px solid darkgreen;
+}
+.error {
+  border: 2px solid red;
 }
