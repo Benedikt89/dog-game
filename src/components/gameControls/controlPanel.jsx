@@ -5,7 +5,7 @@ import {resetCount, runTimerThunk, stopTimerThunk} from "../../redux/reducer";
 
 const ControlPanelRender = (props) => {
     if ( props.count === props.maxCount) {
-        stopTimerThunk();
+        props.stopTimerThunk();
     }
     return (
         <div >
@@ -16,7 +16,7 @@ const ControlPanelRender = (props) => {
             {!props.timerOn?<button onClick={props.runTimerThunk}>START</button>:
             <div>
             <button onClick={props.stopTimerThunk}>STOP</button>
-            <button onClick={props.resetCount}>RESTART</button>
+            <button onClick={()=>{props.resetCount(); props.stopTimerThunk();}}>RESTART</button>
             </div>}
         </div>
     );

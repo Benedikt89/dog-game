@@ -133,19 +133,36 @@ export const stopTimer = () => ({type: STOP_TIMER});
 
 
 // THUNK CREATORS
-let interval;
-
 export const runTimerThunk = () => (dispatch, getState) => {
-    const speed = 1000;
-
-    dispatch(_startTimer());
-    interval = setInterval(() => {
-        let index = Math.floor(Math.random() * 9)+1;
-        dispatch(_setDogShow(index));
-        dispatch(_increaseTaps());
-    }, speed)
+    (function () {
+        let speed = 1000;
+        dispatch(_startTimer());
+        let timer = function() {
+            let increaseSpeed = function() {
+                const count = getState().reducer.count;
+                if (count === 5 && speed > 700){
+                    speed = 700
+                }
+                if (count === 10 && speed > 500){
+                    speed = 500
+                }
+                if (count === 15 && speed > 300){
+                    speed = 300
+                }
+            };
+            //do your thing here
+            let index = Math.floor(Math.random() * 9)+1;
+            dispatch(_setDogShow(index));
+            dispatch(_increaseTaps());
+            increaseSpeed();
+            let timerOn = getState().reducer.timerOn;
+            if (speed >= 40 && timerOn) {
+                setTimeout(timer, speed);
+            }
+        };
+        timer();
+    })();
 };
 export const stopTimerThunk = () => (dispatch) => {
     dispatch(stopTimer());
-    clearInterval(interval)
 };
