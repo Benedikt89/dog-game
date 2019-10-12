@@ -9,10 +9,11 @@ import audio from "../../asserts/dog.mp3";
 class DogElement extends React.Component {
     state = {
         clickOn: false,
+        clickSuccess: false,
     };
     clickActive = () => {
         this.setState({clickOn: true}, ()=>{
-            setTimeout(()=>{this.setState({clickOn: false})}, 500)
+            setTimeout(()=>{this.setState({clickOn: false, clickSuccess: false})}, 500)
         })
     };
 
@@ -22,10 +23,13 @@ class DogElement extends React.Component {
 
         let bgDogStyle = {backgroundImage: `url(${dogImage})`};
         let classNameForWrapper = cx(style.buttonWrapper, {
-            success: this.props.d.visible && this.props.timerOn&&this.state.clickOn,
-            error: !this.props.d.visible&&this.state.clickOn,
+            success: this.state.clickOn && this.state.clickSuccess,
+            error: !this.props.d.visible && this.state.clickOn && !this.state.clickSuccess,
         });
         let clickable = () => {
+            if(this.props.d.visible){
+                this.setState({clickSuccess: true})
+            }
             this.clickActive();
             if (this.props.d.visible && this.props.timerOn) {
                 this.props.increaseCount();

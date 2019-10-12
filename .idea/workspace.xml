@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9389df99-815f-42f2-b7b0-9d4253e5e567" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Game.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Game.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/gameControls/controlPanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/gameControls/controlPanel.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/gameScreen/DogElement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/gameScreen/DogElement.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/gameScreen/DogElement.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/gameScreen/DogElement.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/redux/reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/reducer.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -86,7 +82,8 @@
       <updated>1570721486124</updated>
       <workItem from="1570721487914" duration="11070000" />
       <workItem from="1570786872689" duration="4343000" />
-      <workItem from="1570795025514" duration="9919000" />
+      <workItem from="1570795025514" duration="10205000" />
+      <workItem from="1570813037279" duration="3477000" />
     </task>
     <task id="LOCAL-00001" summary="game ok">
       <created>1570732897128</created>
@@ -102,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570790875705</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="finished UI">
+      <created>1570808636569</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1570808636569</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,6 +128,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="game ok" />
     <MESSAGE value="finish logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish logic" />
+    <MESSAGE value="finished UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished UI" />
   </component>
 </project>

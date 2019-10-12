@@ -42,7 +42,7 @@ const initialState = {
         {
             id: 7,
             count: 0,
-            visible: true,
+            visible: false,
         },
         {
             id: 8,
@@ -78,7 +78,7 @@ let counterReducer = (state = initialState, action) => {
             return {
                 ...state,
                 dogParts: state.dogParts.map(d=> {
-                    if (d.id === action.index) {
+                    if (d.id === action.index && state.timerOn) {
                         return d = {...d, visible: true}
                     } else {
                         return d = {...d, visible: false}
@@ -129,7 +129,7 @@ export const _increaseTaps = () => ({type: INCREASE_TAPS});
 const _setDogShow = (index) => ({type: SET_DOG_SHOW, index});
 export const resetCount = () => ({type: RESET_COUNT});
 export const _startTimer = () => ({type: START_TIMER});
-export const stopTimer = () => ({type: STOP_TIMER});
+export const stopTimerThunk = () => ({type: STOP_TIMER});
 
 
 // THUNK CREATORS
@@ -162,7 +162,4 @@ export const runTimerThunk = () => (dispatch, getState) => {
         };
         timer();
     })();
-};
-export const stopTimerThunk = () => (dispatch) => {
-    dispatch(stopTimer());
 };
