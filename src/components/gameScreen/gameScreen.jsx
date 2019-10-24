@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {increaseCount} from "../../redux/reducer";
 
 const GameScreenRender = (props) => {
+    //Displaying cells
     let gameButtons = props.dogParts.map(d => <DogElement
         key={d.id+1000}
         d={d}

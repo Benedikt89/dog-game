@@ -9,7 +9,7 @@ const ControlPanelRender = ({count, maxCount, timerOn, runTimerThunk, stopTimerT
     }
     return (
         <div >
-            CONTROL SCREEN
+            SCORE
             <div className="counter">
                 {count}
             </div>

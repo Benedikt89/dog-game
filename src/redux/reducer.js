@@ -1,13 +1,15 @@
 //initialising action
-const INCREASE_COUNT = 'INCREASE_COUNT';
-const SET_DOG_SHOW = 'SET_DOG_SHOW';
-const INCREASE_TAPS = 'INCREASE_TAPS';
-const RESET_COUNT = 'RESET_COUNT';
-const START_TIMER = 'START_TIMER';
-const STOP_TIMER = 'STOP_TIMER';
+const INCREASE_COUNT = 'DOG-GAME/INCREASE_COUNT';
+const SET_DOG_SHOW = 'DOG-GAME/SET_DOG_SHOW';
+const INCREASE_TAPS = 'DOG-GAME/INCREASE_TAPS';
+const RESET_COUNT = 'DOG-GAME/RESET_COUNT';
+const START_TIMER = 'DOG-GAME/START_TIMER';
+const STOP_TIMER = 'DOG-GAME/STOP_TIMER';
+const INCREASE_SPEED = 'DOG-GAME/INCREASE_SPEED';
 
 //initialising state
 const initialState = {
+    //elements array
     dogParts: [
         {
             id: 1,
@@ -55,12 +57,14 @@ const initialState = {
             visible: false,
         },
     ],
+    //count ouf successful clicks on active el
     count: 0,
+    //state of timer
     timerOn: false,
     maxCount: 25,
     alertDisplay: false,
-    totalTimeFromSpeedUp: 0,
-    tap: 0,
+    //Start Speed
+    speed: 1000,
 };
 
 //reducer
@@ -70,27 +74,27 @@ let counterReducer = (state = initialState, action) => {
     switch (action.type) {
         case INCREASE_TAPS:
             let newtap = state.tap + 1;
-                return {
-                    ...state,
-                    tap: parseInt(newtap),
-                };
+            return {
+                ...state,
+                tap: parseInt(newtap),
+            };
         case SET_DOG_SHOW:
             return {
                 ...state,
-                dogParts: state.dogParts.map(d=> {
+                dogParts: state.dogParts.map(d => {
                     if (d.id === action.index && state.timerOn) {
-                        return d = {...d, visible: true}
+                        return {...d, visible: true}
                     } else {
-                        return d = {...d, visible: false}
+                        return {...d, visible: false}
                     }
                 })
             };
         case RESET_COUNT:
-                return {
-                    ...state,
-                    count: 0,
-                    alertDisplay: false,
-                };
+            return {
+                ...state,
+                count: 0,
+                alertDisplay: false,
+            };
         case START_TIMER:
             return {
                 ...state,
@@ -101,6 +105,28 @@ let counterReducer = (state = initialState, action) => {
                 ...state,
                 timerOn: false,
             };
+        //Increase speed depends on user progress
+        case INCREASE_SPEED:
+            if (state.count === 7 && state.speed > 800) {
+                return {
+                    ...state,
+                    speed: 800,
+                };
+            }
+            if (state.count === 15 && state.speed > 600) {
+                return {
+                    ...state,
+                    speed: 650,
+                };
+            }
+            if (state.count === 20 && state.speed > 400) {
+                return {
+                    ...state,
+                    speed: 500,
+                };
+            } else {
+                return state
+            }
         case INCREASE_COUNT:
             newCount = state.count + 1;
             if (newCount <= state.maxCount) {
@@ -125,38 +151,29 @@ export default counterReducer;
 
 //action creators
 export const increaseCount = () => ({type: INCREASE_COUNT});
-export const _increaseTaps = () => ({type: INCREASE_TAPS});
 const _setDogShow = (index) => ({type: SET_DOG_SHOW, index});
 export const resetCount = () => ({type: RESET_COUNT});
 export const _startTimer = () => ({type: START_TIMER});
 export const stopTimerThunk = () => ({type: STOP_TIMER});
+export const increaseSpeed = () => ({type: INCREASE_SPEED});
 
 
 // THUNK CREATORS
 export const runTimerThunk = () => (dispatch, getState) => {
     (function () {
-        let speed = 1000;
+        //Start Speed
         dispatch(_startTimer());
-        let timer = function() {
-            let increaseSpeed = function() {
-                const count = getState().reducer.count;
-                if (count === 5 && speed > 700){
-                    speed = 700
-                }
-                if (count === 10 && speed > 500){
-                    speed = 500
-                }
-                if (count === 15 && speed > 300){
-                    speed = 300
-                }
-            };
-            //do your thing here
-            let index = Math.floor(Math.random() * 9)+1;
+        let timer = function () {
+            //randomizer for displaying active cell
+            let index = Math.floor(Math.random() * 9) + 1;
+            //show active cell
             dispatch(_setDogShow(index));
-            dispatch(_increaseTaps());
-            increaseSpeed();
+            //increases speed
+            dispatch(increaseSpeed());
             let timerOn = getState().reducer.timerOn;
-            if (speed >= 40 && timerOn) {
+            let speed = getState().reducer.speed;
+            //timer depends on speed and with defence
+            if (speed >= 100 && timerOn) {
                 setTimeout(timer, speed);
             }
         };
