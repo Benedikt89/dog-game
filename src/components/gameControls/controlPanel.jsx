@@ -9,7 +9,8 @@ const ControlPanelRender = ({count, maxCount, timerOn, runTimerThunk, stopTimerT
     }
     return (
         <div >
-            SCORE
+            {count !== maxCount?<h3>SCORE</h3>:
+            <h3>WINNER</h3>}
             <div className="counter">
                 {count}
             </div>

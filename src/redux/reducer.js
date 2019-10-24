@@ -103,6 +103,7 @@ let counterReducer = (state = initialState, action) => {
         case STOP_TIMER:
             return {
                 ...state,
+                count: 0,
                 timerOn: false,
             };
         //Increase speed depends on user progress
@@ -116,13 +117,13 @@ let counterReducer = (state = initialState, action) => {
             if (state.count === 15 && state.speed > 600) {
                 return {
                     ...state,
-                    speed: 650,
+                    speed: 600,
                 };
             }
             if (state.count === 20 && state.speed > 400) {
                 return {
                     ...state,
-                    speed: 500,
+                    speed: 450,
                 };
             } else {
                 return state
