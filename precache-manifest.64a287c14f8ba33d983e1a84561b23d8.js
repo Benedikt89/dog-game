@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "065aa71a775318221674886f6962a5f9",
+    "revision": "313dd90a91aa9587d8b33228d46f8d60",
     "url": "/dog-game/index.html"
   },
   {
